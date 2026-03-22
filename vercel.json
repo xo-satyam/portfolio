@@ -1,12 +1,7 @@
 {
   "buildCommand": "echo 'No build required'",
   "devCommand": "python -m http.server 8000",
-  "functions": {
-    "api/**/*.js": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  },
+  "outputDirectory": ".",
   "headers": [
     {
       "source": "/(.*)",
