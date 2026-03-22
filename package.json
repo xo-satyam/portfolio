@@ -1,0 +1,23 @@
+{
+  "name": "satyam-sharma-portfolio",
+  "version": "1.0.0",
+  "description": "Satyam Sharma's Professional Portfolio - Tech Enthusiast | DSA Learner | Social Media Lead @ E-Cell DTC",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "preview": "python -m http.server 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "tech",
+    "dsa",
+    "coding",
+    "entrepreneurship"
+  ],
+  "author": "Satyam Sharma",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/satyam-sharma-portfolio"
+  }
+}
