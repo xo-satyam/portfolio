@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satyam Sharma - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #1e40af;
+            padding-bottom: 20px;
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .contact-info span {
+            margin: 0 10px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ddd;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .job {
+            margin-bottom: 18px;
+        }
+
+        .job-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .company {
+            font-size: 14px;
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .duration {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .job-description {
+            font-size: 13px;
+            color: #555;
+            margin-left: 20px;
+        }
+
+        .job-description li {
+            margin-bottom: 6px;
+            list-style-position: inside;
+        }
+
+        .education-item {
+            margin-bottom: 15px;
+        }
+
+        .degree {
+            font-size: 14px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 3px;
+        }
+
+        .university {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .edu-duration {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .skill-category {
+            font-size: 13px;
+        }
+
+        .skill-category-title {
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+
+        .skill-items {
+            color: #555;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .achievement-list {
+            margin-left: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .achievement-list li {
+            margin-bottom: 6px;
+            list-style-position: inside;
+        }
+
+        .summary {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .name {
+                font-size: 24px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="name">SATYAM SHARMA</div>
+            <div class="title">Aspiring Tech Enthusiast | DSA Learner | Social Media Lead @ E-Cell DTC</div>
+            <div class="contact-info">
+                <span>📧 satyam@example.com</span>
+                <span>📱 +91-XXXXX-XXXXX</span>
+                <span>📍 Delhi, India</span>
+            </div>
+            <div class="contact-info" style="margin-top: 8px;">
+                <span>LinkedIn: linkedin.com/in/satyamsharma</span>
+                <span>GitHub: github.com/satyamsharma</span>
+                <span>Twitter: @satyamsharma</span>
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <div class="summary">
+                Passionate first-year B.Tech student at Delhi Technical Campus (GGSIPU) with strong foundation in Data Structures & Algorithms and proven expertise in digital marketing and community engagement. Currently serving as Social Media Lead at E-Cell DTC, driving digital initiatives and fostering entrepreneurial spirit across campus. Recognized for competitive coding excellence with 3X CodingNinjas Topper rankings and Ninja Dominator achievement. Committed to continuous learning and creating meaningful impact through technology and strategic communication.
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+            <div class="section-title">Professional Experience</div>
+            
+            <div class="job">
+                <div class="company">E-Cell DTC</div>
+                <div class="job-title">Social Media Manager</div>
+                <div class="duration">June 2025 - Present (10 months) | Delhi, India</div>
+                <ul class="job-description">
+                    <li>Developed and executed content strategy across LinkedIn, Instagram, and Twitter, increasing brand visibility and community engagement</li>
+                    <li>Managed day-to-day social media operations ensuring consistent branding, tone, and messaging across all platforms</li>
+                    <li>Designed and executed digital campaigns for recruitment, events, and entrepreneurship initiatives with cross-functional teams</li>
+                    <li>Analyzed post performance metrics and implemented data-driven improvements to boost reach and engagement</li>
+                    <li>Coordinated with design and content teams to create compelling visual and written content</li>
+                    <li>Promoted major events including workshops, hackathons, and startup sessions through strategic digital campaigns</li>
+                    <li>Engaged with community by responding to comments, DMs, and creating interactive polls and Q&A sessions</li>
+                    <li>Maintained professional and entrepreneurial brand image while exploring emerging trends and content formats</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="education-item">
+                <div class="degree">Bachelor of Technology (B.Tech) - Computer Science</div>
+                <div class="university">Guru Gobind Singh Indraprastha University (GGSIPU)</div>
+                <div class="edu-duration">September 2024 - October 2028 | Delhi, India</div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <div class="section-title">Skills & Expertise</div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-title">Technical Skills</div>
+                    <div class="skill-items">
+                        • Data Structures & Algorithms<br>
+                        • Java Programming<br>
+                        • Problem Solving<br>
+                        • Web Development<br>
+                        • Competitive Coding
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-category-title">Digital Marketing</div>
+                    <div class="skill-items">
+                        • Social Media Management<br>
+                        • Content Strategy<br>
+                        • Campaign Planning<br>
+                        • Audience Engagement<br>
+                        • Analytics & Reporting
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-category-title">Professional Skills</div>
+                    <div class="skill-items">
+                        • Team Collaboration<br>
+                        • Communication<br>
+                        • Leadership<br>
+                        • Project Management<br>
+                        • Creativity
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Tools & Platforms</div>
+                    <div class="skill-items">
+                        • LinkedIn, Instagram, Twitter<br>
+                        • MS Office Suite<br>
+                        • Google Analytics<br>
+                        • Canva, Figma<br>
+                        • Git/GitHub
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements & Certifications -->
+        <div class="section">
+            <div class="section-title">Achievements & Recognition</div>
+            <ul class="achievement-list">
+                <li><strong>IIT Bombay Techfest Participant:</strong> Successfully participated in India's premier technology festival hosted by IIT Bombay</li>
+                <li><strong>3X CodingNinjas Topper:</strong> Achieved top rankings three times on CodingNinjas platform, demonstrating competitive coding excellence and consistent performance</li>
+                <li><strong>Ninja Dominator:</strong> Earned prestigious Ninja Dominator title through sustained excellence and problem-solving prowess on CodingNinjas</li>
+                <li><strong>Social Media Lead @ E-Cell DTC:</strong> Driving digital initiatives and fostering entrepreneurial spirit across Delhi Technical Campus</li>
+                <li><strong>Striver Sheet in Progress:</strong> Actively working through comprehensive DSA curriculum for complete problem-solving capability</li>
+                <li><strong>Real-World Collaboration Experience:</strong> Contributing to E-Cell initiatives that empower student entrepreneurs and promote startup culture</li>
+            </ul>
+        </div>
+
+        <!-- Core Competencies -->
+        <div class="section">
+            <div class="section-title">Core Competencies</div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-items">
+                        ✓ Digital Strategy & Planning<br>
+                        ✓ Content Creation & Curation<br>
+                        ✓ Community Management<br>
+                        ✓ Brand Development<br>
+                        ✓ Analytics & Insights
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-items">
+                        ✓ Algorithm Design<br>
+                        ✓ Code Optimization<br>
+                        ✓ System Thinking<br>
+                        ✓ Quick Learning<br>
+                        ✓ Problem Decomposition
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="section">
+            <div class="section-title">Interests & Activities</div>
+            <div class="summary">
+                Passionate about mastering Data Structures & Algorithms, exploring the intersection of technology and entrepreneurship, building digital communities, strategic content creation, competitive coding, and fostering innovation through social platforms. Actively involved in campus tech initiatives and entrepreneurship programs.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 11px; color: #999;">
+            <p>References and additional project details available upon request</p>
+        </div>
+    </div>
+</body>
+</html>
