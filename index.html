@@ -3,21 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satyam Sharma - Portfolio</title>
+    <title>Satyam Sharma | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Three.js -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
+        }
+      }
+    </script>
 </head>
 <body>
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-logo">Satyam Sharma</div>
+            <div class="nav-logo">SS<span>.</span></div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -30,71 +47,139 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm <span class="highlight">Satyam Sharma</span></h1>
-            <p class="subtitle">Aspiring Tech Enthusiast | DSA Learner | Social Media Lead @ E-Cell DTC</p>
-            <p class="hero-description">
-                A passionate B.Tech 2nd year student (Session 2024-28) diving deep into Data Structures & Algorithms, 
-                building digital communities, and exploring the intersection of technology and entrepreneurship.
-            </p>
-            <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary">Explore My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="greeting">Hi there, I'm</span>
+                <h1>Satyam Sharma</h1>
+                <p class="subtitle">B.Tech CS Student & Backend Developer</p>
+                <p class="hero-description">
+                    Building scalable, security-focused systems and exploring the depths of Backend Development. Currently strengthening DSA skills at GGSIPU.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/satyam-sharma-061923360/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/xo-satyam" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:satyam04sharma30@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
-        </div>
-        <div class="hero-badges">
-            <div class="badge">
-                <i class="fas fa-trophy"></i>
-                <span>IIT Bombay Techfest</span>
-            </div>
-            <div class="badge">
-                <i class="fas fa-code"></i>
-                <span>3X CodingNinjas Topper</span>
-            </div>
-            <div class="badge">
-                <i class="fas fa-star"></i>
-                <span>Ninja Dominator</span>
+            <div class="hero-visual">
+                <div id="canvas-container">
+                    <!-- Three.js Canvas will be injected here -->
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about section">
         <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
                 <div class="about-text">
                     <p>
-                        I'm a 2nd year B.Tech student in Computer Science at Delhi Technical Campus (GGSIPU) (Session 2024-28), currently pursuing my passion 
-                        for computer science and technology. With a solid foundation in Data Structures & Algorithms and 
-                        hands-on experience in digital marketing and community building.
+                        I am a B.Tech Computer Science student (2024–2028) at GGSIPU with a strong interest in backend development and problem-solving. I enjoy building real-world systems involving APIs, data processing, and security-focused applications.
                     </p>
                     <p>
-                        As the Social Media Lead at E-Cell DTC, I'm responsible for crafting compelling digital narratives, 
-                        driving community engagement, and executing innovative campaigns that promote the startup spirit across campus. 
-                        I believe in combining creativity with strategy to make meaningful impact through technology and social platforms.
+                        Currently, I'm strengthening my Data Structures & Algorithms skills while developing scalable solutions with practical impact. I'm passionate about system design and creating robust backend architectures.
                     </p>
-                    <p>
-                        I'm committed to taking consistent small steps every day toward becoming a better version of myself — 
-                        as a coder, creator, and community builder. Let's connect and grow together!
-                    </p>
+                    <div class="education-box">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <p><strong>Guru Gobind Singh Indraprastha University (GGSIPU)</strong></p>
+                        <p>B.Tech in Computer Science | 2024 – 2028</p>
+                    </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>1Y+</h3>
-                        <p>Coding Experience</p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h4>Achievements</h4>
+                            <ul>
+                                <li>Campus Ambassador — IIT Bombay Techfest</li>
+                                <li>3× Coding Ninjas Topper</li>
+                                <li>Ninja Dominator</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <h3>3X</h3>
-                        <p>CodingNinjas Topper</p>
+                    <div class="highlight-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4>Certifications</h4>
+                            <ul>
+                                <li>Deloitte AU - Data Analytics</li>
+                                <li>Deloitte AU - Technology</li>
+                                <li>Deloitte AU - Cyber Security</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <h3>10M+</h3>
-                        <p>Social Media Lead</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-tag">AML Platform</div>
+                        <h3>Intelligent Fund Flow Tracking System</h3>
+                        <p>Built a backend system to detect suspicious financial transactions using hybrid risk scoring, ML-style anomaly detection, and graph-based analysis.</p>
+                        <ul class="project-features">
+                            <li>APIs for ingestion, tracing, and case management</li>
+                            <li>Designed RBAC system for compliance and admin roles</li>
+                            <li>Integrated CI/CD and containerized with Docker</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>FastAPI</span>
+                            <span>Python</span>
+                            <span>Docker</span>
+                            <span>Neo4j</span>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <h3>100%</h3>
-                        <p>Dedicated</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-tag">Security</div>
+                        <h3>Zombie API Discovery & Defense</h3>
+                        <p>Platform to discover and classify undocumented or unused APIs in distributed systems. Implemented API lifecycle classification (Active, Deprecated, Orphaned, Zombie).</p>
+                        <ul class="project-features">
+                            <li>Security assessment engine for auth & risk scoring</li>
+                            <li>Dashboard for monitoring API risks</li>
+                            <li>DevOps setup with Docker and Kubernetes</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>Node.js</span>
+                            <span>K8s</span>
+                            <span>React</span>
+                            <span>CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-tag">Web App</div>
+                        <h3>Spotify Clone</h3>
+                        <p>A browser-based music player with playback controls, progress bar, and volume management. Designed a responsive UI inspired by Spotify.</p>
+                        <ul class="project-features">
+                            <li>Strengthened DOM manipulation & event handling</li>
+                            <li>Clean, responsive user interface</li>
+                            <li>Real-time playback controls</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,173 +187,111 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience">
+    <section id="experience" class="experience section">
         <div class="container">
-            <h2>Professional Experience</h2>
-            <div class="experience-card">
-                <div class="experience-header">
-                    <h3>Social Media Manager</h3>
-                    <span class="duration">June 2025 - Present</span>
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">June 2025 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Social Media Manager</h3>
+                        <p class="company">E-Cell DTC</p>
+                        <ul>
+                            <li>Managed content strategy across LinkedIn, Instagram, and Twitter</li>
+                            <li>Planned and executed digital campaigns for events and recruitment</li>
+                            <li>Improved audience engagement through interactive content strategies</li>
+                        </ul>
+                    </div>
                 </div>
-                <p class="company">E-Cell DTC | Delhi, India</p>
-                <ul class="experience-details">
-                    <li><strong>Content Strategy & Planning:</strong> Create and maintain content calendar aligned with E-Cell's events and campaigns</li>
-                    <li><strong>Platform Management:</strong> Handle daily posting on LinkedIn, Instagram, and Twitter with consistent branding</li>
-                    <li><strong>Campaign Execution:</strong> Design and execute digital campaigns for recruitment, events, and initiatives</li>
-                    <li><strong>Audience Engagement:</strong> Respond to community interactions and create engaging polls and Q&As</li>
-                    <li><strong>Analytics & Reporting:</strong> Track performance metrics and optimize content based on data insights</li>
-                    <li><strong>Brand Building:</strong> Maintain professional image and explore new trends to keep content fresh</li>
-                    <li><strong>Event Promotion:</strong> Create hype for workshops, hackathons, and startup events</li>
-                </ul>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <section id="skills" class="skills section">
         <div class="container">
-            <h2>Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Technical Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">DSA</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Web Development</span>
-                        <span class="skill-tag">Data Structures</span>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-wrapper">
+                <div class="skill-group">
+                    <h3>Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">Python</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Digital Marketing</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Social Media Management</span>
-                        <span class="skill-tag">Content Strategy</span>
-                        <span class="skill-tag">Campaign Planning</span>
-                        <span class="skill-tag">Audience Engagement</span>
-                        <span class="skill-tag">Analytics</span>
+                <div class="skill-group">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">React.js</span>
+                        <span class="skill-item">HTML5 / CSS3</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Professional Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Team Collaboration</span>
-                        <span class="skill-tag">Communication</span>
-                        <span class="skill-tag">Creativity</span>
-                        <span class="skill-tag">Leadership</span>
-                        <span class="skill-tag">Project Management</span>
+                <div class="skill-group">
+                    <h3>Backend</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">FastAPI</span>
+                        <span class="skill-item">REST APIs</span>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="achievements">
-        <div class="container">
-            <h2>Achievements & Qualifications</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <i class="fas fa-trophy"></i>
-                    <h3>IIT Bombay Techfest Participant</h3>
-                    <p>Successfully participated in India's premier technology festival hosted by IIT Bombay</p>
+                <div class="skill-group">
+                    <h3>Tools & Core</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">DSA</span>
+                        <span class="skill-item">System Design</span>
+                    </div>
                 </div>
-                <div class="achievement-card">
-                    <i class="fas fa-code"></i>
-                    <h3>3X CodingNinjas Topper</h3>
-                    <p>Achieved top rankings three times on CodingNinjas platform, showcasing competitive coding excellence</p>
-                </div>
-                <div class="achievement-card">
-                    <i class="fas fa-star"></i>
-                    <h3>Ninja Dominator</h3>
-                    <p>Earned prestigious Ninja Dominator title on CodingNinjas through consistent performance and problem-solving</p>
-                </div>
-                <div class="achievement-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Social Media Lead @ E-Cell</h3>
-                    <p>Leading digital initiatives and community engagement for Delhi Technical Campus E-Cell</p>
-                </div>
-                <div class="achievement-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>B.Tech in Computer Science</h3>
-                    <p>Currently pursuing B.Tech from GGSIPU with focus on practical skills and DSA mastery</p>
-                </div>
-                <div class="achievement-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Striver Sheet in Progress</h3>
-                    <p>Actively working through comprehensive DSA curriculum for complete problem-solving capability</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-card">
-                <h3>Bachelor of Technology (B.Tech) - Computer Science</h3>
-                <p class="university">Guru Gobind Singh Indraprastha University (GGSIPU)</p>
-                <p class="duration">Session 2024-28 | Currently in 2nd Year | Delhi, India</p>
-                <p class="description">
-                    Pursuing B.Tech in Computer Science with emphasis on Data Structures & Algorithms, 
-                    software development, and practical application of technology in solving real-world problems.
-                </p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section">
         <div class="container">
-            <h2>Let's Connect</h2>
-            <p class="contact-intro">I'm always interested in connecting with fellow tech enthusiasts, entrepreneurs, and opportunities to grow. Feel free to reach out!</p>
-            
-            <div class="contact-methods">
-                <a href="mailto:satyamsharmaprep@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email Me</span>
-                </a>
-                <a href="tel:+919891595754" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    <span>Call Me</span>
-                </a>
-                <a href="https://www.linkedin.com/in/satyam-sharma-061923360/" class="contact-link" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/xo-satyam" class="contact-link" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-            </div>
-
-            <div class="contact-form">
-                <h3>Send Me a Message</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Delhi, India</p>
                     </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 9891595754</p>
                     </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>satyam04sharma30@gmail.com</p>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
+                    <div class="contact-socials">
+                        <a href="https://www.linkedin.com/in/satyam-sharma-061923360/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/xo-satyam" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="portfolioContactForm">
+                        <div class="form-row">
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Satyam Sharma. All rights reserved.</p>
-            <p>Crafted with <i class="fas fa-heart"></i> and passion for technology</p>
+            <p>&copy; 2025 Satyam Sharma. Built with <i class="fas fa-heart"></i></p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
