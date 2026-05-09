@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satyam Sharma | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Three.js -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">SS<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="greeting">Hi there, I'm</span>
+                <h1>Satyam Sharma</h1>
+                <p class="subtitle">B.Tech CS Student & Backend Developer</p>
+                <p class="hero-description">
+                    Building scalable, security-focused systems and exploring the depths of Backend Development. Currently strengthening DSA skills at GGSIPU.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/satyam-sharma-061923360/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/xo-satyam" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:satyam04sharma30@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div id="canvas-container">
+                    <!-- Three.js Canvas will be injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        I am a B.Tech Computer Science student (2024–2028) at GGSIPU with a strong interest in backend development and problem-solving. I enjoy building real-world systems involving APIs, data processing, and security-focused applications.
+                    </p>
+                    <p>
+                        Currently, I'm strengthening my Data Structures & Algorithms skills while developing scalable solutions with practical impact. I'm passionate about system design and creating robust backend architectures.
+                    </p>
+                    <div class="education-box">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <p><strong>Guru Gobind Singh Indraprastha University (GGSIPU)</strong></p>
+                        <p>B.Tech in Computer Science | 2024 – 2028</p>
+                    </div>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h4>Achievements</h4>
+                            <ul>
+                                <li>Campus Ambassador — IIT Bombay Techfest</li>
+                                <li>3× Coding Ninjas Topper</li>
+                                <li>Ninja Dominator</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4>Certifications</h4>
+                            <ul>
+                                <li>Deloitte AU - Data Analytics</li>
+                                <li>Deloitte AU - Technology</li>
+                                <li>Deloitte AU - Cyber Security</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-tag">AML Platform</div>
+                        <h3>Intelligent Fund Flow Tracking System</h3>
+                        <p>Built a backend system to detect suspicious financial transactions using hybrid risk scoring, ML-style anomaly detection, and graph-based analysis.</p>
+                        <ul class="project-features">
+                            <li>APIs for ingestion, tracing, and case management</li>
+                            <li>Designed RBAC system for compliance and admin roles</li>
+                            <li>Integrated CI/CD and containerized with Docker</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>FastAPI</span>
+                            <span>Python</span>
+                            <span>Docker</span>
+                            <span>Neo4j</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-tag">Security</div>
+                        <h3>Zombie API Discovery & Defense</h3>
+                        <p>Platform to discover and classify undocumented or unused APIs in distributed systems. Implemented API lifecycle classification (Active, Deprecated, Orphaned, Zombie).</p>
+                        <ul class="project-features">
+                            <li>Security assessment engine for auth & risk scoring</li>
+                            <li>Dashboard for monitoring API risks</li>
+                            <li>DevOps setup with Docker and Kubernetes</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>Node.js</span>
+                            <span>K8s</span>
+                            <span>React</span>
+                            <span>CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-tag">Web App</div>
+                        <h3>Spotify Clone</h3>
+                        <p>A browser-based music player with playback controls, progress bar, and volume management. Designed a responsive UI inspired by Spotify.</p>
+                        <ul class="project-features">
+                            <li>Strengthened DOM manipulation & event handling</li>
+                            <li>Clean, responsive user interface</li>
+                            <li>Real-time playback controls</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">June 2025 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Social Media Manager</h3>
+                        <p class="company">E-Cell DTC</p>
+                        <ul>
+                            <li>Managed content strategy across LinkedIn, Instagram, and Twitter</li>
+                            <li>Planned and executed digital campaigns for events and recruitment</li>
+                            <li>Improved audience engagement through interactive content strategies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-wrapper">
+                <div class="skill-group">
+                    <h3>Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">Python</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">React.js</span>
+                        <span class="skill-item">HTML5 / CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Backend</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">FastAPI</span>
+                        <span class="skill-item">REST APIs</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Tools & Core</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">DSA</span>
+                        <span class="skill-item">System Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Delhi, India</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 9891595754</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>satyam04sharma30@gmail.com</p>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://www.linkedin.com/in/satyam-sharma-061923360/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/xo-satyam" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="portfolioContactForm">
+                        <div class="form-row">
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Satyam Sharma. Built with <i class="fas fa-heart"></i></p>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
