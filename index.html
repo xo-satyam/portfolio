@@ -22,8 +22,9 @@
 </head>
 <body class="loading">
     <div id="loader-wrapper">
-        <!-- 3D Scene Container for the Pirate Loader -->
-        <div id="loading-canvas-container"></div>
+        <video id="loader-video" autoplay muted loop playsinline>
+            <source src="pirate_ocean.mp4" type="video/mp4">
+        </video>
 
         <!-- Top Left Logo -->
         <div class="pirate-logo-container">
@@ -39,96 +40,17 @@
                     <div class="sword sword-2"></div>
                 </div>
             </div>
+            <div class="loader-name">SATYAM SHARMA</div>
         </div>
 
-        <!-- Main Cinematic Typography -->
-        <div class="loader-center-content">
-            <h1 class="cinematic-title">DEV SATYAM</h1>
-            <p class="cinematic-subtitle">Charting ideas. Building solutions. Delivering impact.</p>
-        </div>
-
-        <!-- Right Side: Animation Flow Panel -->
-        <div class="animation-flow-panel">
-            <div class="flow-card active" data-step="1">
-                <span class="step-num">01</span>
-                <div class="step-info">
-                    <span class="step-label">Ocean Appears</span>
-                    <div class="step-status">Initializing...</div>
-                </div>
-            </div>
-            <div class="flow-card" data-step="2">
-                <span class="step-num">02</span>
-                <div class="step-info">
-                    <span class="step-label">Ship Sails In</span>
-                    <div class="step-status">Pending</div>
-                </div>
-            </div>
-            <div class="flow-card" data-step="3">
-                <span class="step-num">03</span>
-                <div class="step-info">
-                    <span class="step-label">Waves Animate</span>
-                    <div class="step-status">Pending</div>
-                </div>
-            </div>
-            <div class="flow-card" data-step="4">
-                <span class="step-num">04</span>
-                <div class="step-info">
-                    <span class="step-label">Loading Progress</span>
-                    <div class="step-status">Pending</div>
-                </div>
-            </div>
-            <div class="flow-card" data-step="5">
-                <span class="step-num">05</span>
-                <div class="step-info">
-                    <span class="step-label">Journey Begins</span>
-                    <div class="step-status">Pending</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom UI Panels -->
-        <div class="bottom-panels">
-            <div class="ui-card">
-                <span class="card-title">Visual Elements</span>
-                <span class="card-value">3D Ship & Ocean</span>
-            </div>
-            <div class="ui-card">
-                <span class="card-title">Design Notes</span>
-                <span class="card-value">Cinematic Style</span>
-            </div>
-            <div class="ui-card">
-                <span class="card-title">Tech Stack</span>
-                <span class="card-value">Three.js / WebGL</span>
-            </div>
-            <div class="ui-card">
-                <span class="card-title">Color Palette</span>
-                <div class="color-dots">
-                    <span class="dot d1"></span>
-                    <span class="dot d2"></span>
-                    <span class="dot d3"></span>
-                </div>
-            </div>
-            <div class="ui-card">
-                <span class="card-title">Typography</span>
-                <span class="card-value">Plus Jakarta Sans</span>
-            </div>
-        </div>
-
-        <!-- Loading Bar with Compass -->
+        <!-- Loading Bar -->
         <div class="loading-footer">
-            <div class="compass-container">
-                <div class="compass-wheel">
-                    <i class="fas fa-compass"></i>
-                </div>
-            </div>
             <div class="wave-loader-bar">
                 <div class="wave-container">
                     <div class="wave-fill" id="loading-progress" style="width: 0%;">
                         <div class="wave-animated"></div>
+                        <div class="glossy-reflection"></div>
                     </div>
-                </div>
-                <div class="percentage-container">
-                    <span id="loading-percentage">0</span>%
                 </div>
             </div>
         </div>
