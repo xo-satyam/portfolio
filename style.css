@@ -33,33 +33,366 @@ body {
     padding: 0 2rem;
 }
 
-/* Loader */
+/* Pirate Loading Screen Styles */
+body.loading {
+    overflow: hidden;
+}
+
 #loader-wrapper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-dark);
+    background: radial-gradient(circle at center, #1e3a8a, #0f172a);
+    z-index: 9999;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+}
+
+#loading-canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Top Left: Pirate Logo */
+.pirate-logo-container {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 10;
+}
+
+.pirate-logo {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.anime-head {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    border: 4px solid #1a1a1a;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.hair-spikes {
+    position: absolute;
+    top: -20px;
+    left: -5px;
+    width: 80px;
+    height: 40px;
+    background: #000;
+    clip-path: polygon(0% 100%, 10% 20%, 20% 100%, 30% 0%, 40% 100%, 50% 10%, 60% 100%, 70% 0%, 80% 100%, 90% 20%, 100% 100%);
+}
+
+.headphones {
+    position: absolute;
+    top: 18px;
+    left: -8px;
+    width: 86px;
+    height: 45px;
+    border: 8px solid #ef4444;
+    border-bottom: none;
+    border-radius: 45px 45px 0 0;
+}
+
+.sunglasses {
+    position: absolute;
+    top: 28px;
+    left: 12px;
+    width: 46px;
+    height: 18px;
+    background: #000;
+    border-radius: 4px;
+}
+
+.face-smile {
+    position: absolute;
+    bottom: 12px;
+    left: 25px;
+    width: 20px;
+    height: 10px;
+    border-bottom: 4px solid #000;
+    border-radius: 0 0 10px 10px;
+}
+
+.crossed-swords {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 50px;
+    z-index: 1;
+}
+
+.sword {
+    position: absolute;
+    width: 100px;
+    height: 6px;
+    background: linear-gradient(to bottom, #e2e8f0, #94a3b8);
+    border: 2px solid #000;
+    border-radius: 3px;
+}
+
+.sword-1 { transform: rotate(35deg); top: 15px; left: 10px; }
+.sword-2 { transform: rotate(-35deg); top: 15px; left: 10px; }
+
+/* Center: Typography */
+.loader-center-content {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.cinematic-title {
+    font-size: 7rem;
+    font-weight: 900;
+    letter-spacing: 1.2rem;
+    background: linear-gradient(to bottom, #fff 30%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 5px 10px rgba(0,0,0,0.5);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+}
+
+.cinematic-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+
+/* Right: Animation Flow */
+.animation-flow-panel {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.flow-card {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.4rem 2.2rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    width: 320px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.4;
+    transform: translateX(30px);
+}
+
+.flow-card.active {
+    opacity: 1;
+    border-color: #6366f1;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+    transform: translateX(0);
+}
+
+.step-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #6366f1;
+}
+
+.step-label {
+    display: block;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.step-status {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+/* Bottom: UI Panels */
+.bottom-panels {
+    position: absolute;
+    bottom: 140px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.ui-card {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.4rem 2rem;
+    border-radius: 18px;
+    min-width: 200px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.ui-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-title {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.card-value {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.color-dots {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 5px;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.d1 { background: #6366f1; box-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+.d2 { background: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
+.d3 { background: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+
+/* Footer: Wave Progress */
+.loading-footer {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    z-index: 10;
+}
+
+.compass-container {
+    width: 70px;
+    height: 70px;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid var(--text-secondary);
-    border-bottom-color: var(--primary);
-    border-radius: 50%;
-    animation: rotation 1s linear infinite;
+.compass-wheel {
+    font-size: 3rem;
+    color: #fff;
+    animation: spin 8s linear infinite;
+    text-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
-@keyframes rotation {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.wave-loader-bar {
+    flex-grow: 1;
+    position: relative;
+}
+
+.wave-container {
+    height: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wave-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6);
+    background-size: 200% 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+.wave-animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,50 C150,100 350,0 500,50 C650,100 850,0 1000,50 L1000,100 L0,100 Z" fill="rgba(255,255,255,0.2)"/></svg>');
+    background-size: 50% 100%;
+    animation: waveProgress 3s linear infinite;
+}
+
+@keyframes waveProgress {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.percentage-container {
+    position: absolute;
+    right: 0;
+    top: -35px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1200px) {
+    .cinematic-title { font-size: 4rem; }
+    .bottom-panels { display: none; }
+}
+
+@media (max-width: 768px) {
+    .animation-flow-panel { display: none; }
+    .cinematic-title { font-size: 3rem; }
+    .pirate-logo-container { transform: scale(0.7); top: 20px; left: 20px; }
 }
 
 /* Navbar */
