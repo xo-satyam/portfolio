@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+    background: #000;
 }
 
 body {
@@ -33,7 +34,10 @@ body {
     padding: 0 2rem;
 }
 
-/* Pirate Loading Screen Styles */
+/* ═══════════════════════════════════════════════════════════ */
+/* CINEMATIC LOADING SCREEN                                   */
+/* ═══════════════════════════════════════════════════════════ */
+
 body.loading {
     overflow: hidden;
 }
@@ -42,14 +46,14 @@ body.loading {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: #000;
     z-index: 9999;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    color: white;
+    overflow: hidden;
 }
 
+/* --- Layer 1: Video Background --- */
 #loader-video {
     position: absolute;
     top: 0;
@@ -57,191 +61,306 @@ body.loading {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     z-index: 1;
+    filter: saturate(0.5) brightness(0.75) contrast(1.05);
 }
 
-/* Top Left: Pirate Logo */
-.pirate-logo-container {
+/* --- Layer 2: Minimal overlay --- */
+.loader-overlay {
     position: absolute;
-    top: 40px;
-    left: 40px;
-    z-index: 10;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.pirate-logo {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin-bottom: 10px;
-}
-
-.anime-head {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #ffffff, #c0c0c0);
-    border-radius: 50%;
-    position: absolute;
-    top: 15px;
-    left: 25px;
-    border: 3px solid #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
     z-index: 2;
 }
 
-.hair-spikes {
-    position: absolute;
-    top: -20px;
-    left: -5px;
-    width: 80px;
-    height: 40px;
-    background: #000;
-    clip-path: polygon(0% 100%, 10% 20%, 20% 100%, 30% 0%, 40% 100%, 50% 10%, 60% 100%, 70% 0%, 80% 100%, 90% 20%, 100% 100%);
+/* --- Layer 3: Removed — was causing blue edge glow via mix-blend-mode --- */
+.loader-color-grade {
+    display: none;
 }
 
-.headphones {
+/* --- Layer 4: Subtle Fog / Mist (centre only, no edge glow) --- */
+.fog-layer {
     position: absolute;
-    top: 18px;
-    left: -8px;
-    width: 86px;
-    height: 45px;
-    border: 8px solid #fff;
-    border-bottom: none;
-    border-radius: 45px 45px 0 0;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    will-change: opacity;
 }
 
-.sunglasses {
-    position: absolute;
-    top: 28px;
-    left: 12px;
-    width: 46px;
-    height: 18px;
-    background: #000;
-    border-radius: 4px;
+.fog-1 {
+    background: radial-gradient(ellipse 60% 30% at 50% 75%, rgba(200, 215, 230, 0.07) 0%, transparent 100%);
+    animation: fogPulse1 18s ease-in-out infinite alternate;
 }
 
-.face-smile {
-    position: absolute;
-    bottom: 12px;
-    left: 25px;
-    width: 20px;
-    height: 10px;
-    border-bottom: 4px solid #000;
-    border-radius: 0 0 10px 10px;
+.fog-2 {
+    background: radial-gradient(ellipse 50% 25% at 35% 65%, rgba(180, 200, 220, 0.05) 0%, transparent 100%);
+    animation: fogPulse2 24s ease-in-out infinite alternate;
 }
 
-.crossed-swords {
+.fog-3 {
+    background: radial-gradient(ellipse 55% 20% at 65% 80%, rgba(190, 210, 225, 0.05) 0%, transparent 100%);
+    animation: fogPulse3 20s ease-in-out infinite alternate;
+}
+
+@keyframes fogPulse1 {
+    0%   { opacity: 0.5; transform: translateX(0); }
+    100% { opacity: 1;   transform: translateX(20px); }
+}
+
+@keyframes fogPulse2 {
+    0%   { opacity: 0.6; transform: translateX(0); }
+    100% { opacity: 0.9; transform: translateX(-15px); }
+}
+
+@keyframes fogPulse3 {
+    0%   { opacity: 0.4; transform: translateX(5px); }
+    100% { opacity: 0.8; transform: translateX(-10px); }
+}
+
+/* --- Layer 5: Vignette removed --- */
+.loader-vignette {
+    display: none;
+}
+
+/* --- Layer 6: Content --- */
+.loader-content {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6vh 4vw; /* Top left corner positioning */
+}
+
+.loader-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Logo */
+.loader-logo-section {
+    margin-bottom: -2rem; /* Reduced negative margin since logo is smaller */
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    filter: blur(8px);
+    transition: none;
+    position: relative;
+    z-index: 2;
+}
+
+.loader-logo-section.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0px);
+    transition: opacity 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.loader-logo-img {
+    width: clamp(200px, 26vw, 420px); /* Decreased logo size */
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15))
+            drop-shadow(0 4px 20px rgba(0, 0, 0, 0.6))
+            brightness(1.1);
+    will-change: filter;
+}
+
+/* Description Text */
+.loader-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 850px;
+    margin-top: -1.5rem; 
+    position: relative;
+    z-index: 3;
+}
+
+.desc-line {
+    display: block;
+    font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(0.7rem, 0.9vw, 0.88rem); /* Decreased text size */
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6; /* Tighter line height for a paragraph feel */
+    letter-spacing: 0.015em;
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    filter: blur(4px);
+    transition: none;
+}
+
+.desc-line.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0px);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- Layer 7: Bottom Section --- */
+.loader-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 120px;
-    height: 50px;
-    z-index: 1;
-}
-
-.sword {
-    position: absolute;
-    width: 100px;
-    height: 6px;
-    background: linear-gradient(to bottom, #ffffff, #a0a0a0);
-    border: 1.5px solid #000;
-    border-radius: 3px;
-}
-
-.sword-1 { transform: rotate(35deg); top: 15px; left: 10px; }
-.sword-2 { transform: rotate(-35deg); top: 15px; left: 10px; }
-
-.loader-name {
-    font-size: 2rem;
-    font-weight: 300;
-    color: #ffffff;
-    letter-spacing: 0.6rem;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.2);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    text-transform: uppercase;
-    margin-top: 15px;
-}
-
-/* Footer: Progress Bar */
-.loading-footer {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
+    right: 0;
     z-index: 10;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5vh;
+    gap: 1.8rem;
 }
 
-.wave-loader-bar {
-    width: 100%;
-    position: relative;
-    padding: 3px;
-    background: linear-gradient(180deg, #c0c0c0 0%, #333 15%, #000 50%, #333 85%, #c0c0c0 100%);
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.1);
-    border: 1px solid #71717a;
+/* "LOADING THE JOURNEY" text */
+.loading-journey-text {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.25em;
+    text-align: center;
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.1),
+        0 2px 10px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: none;
+    animation: none;
 }
 
-.wave-container {
-    height: 18px;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 20px;
+.loading-journey-text.visible {
+    opacity: 1;
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: textFlicker 4s ease-in-out infinite;
+}
+
+@keyframes textFlicker {
+    0%, 100% { opacity: 0.85; text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1); }
+    25%      { opacity: 1;    text-shadow: 0 0 25px rgba(255,255,255,0.45), 0 0 50px rgba(255,255,255,0.15); }
+    50%      { opacity: 0.75; text-shadow: 0 0 15px rgba(255,255,255,0.2), 0 0 30px rgba(255,255,255,0.08); }
+    75%      { opacity: 0.95; text-shadow: 0 0 22px rgba(255,255,255,0.35), 0 0 45px rgba(255,255,255,0.12); }
+}
+
+/* Progress Bar */
+.loader-progress-track {
+    width: 55%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 1px;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.9);
+    opacity: 0;
+    transition: none;
 }
 
-.wave-fill {
+.loader-progress-track.visible {
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+}
+
+.loader-progress-bar {
+    width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #0077be, #00a8e8, #0077be);
-    background-size: 200% 100%;
-    transition: width 0.3s linear;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 1px;
     position: relative;
-    box-shadow: 0 0 20px rgba(0, 119, 190, 0.8);
+    transition: width 0.15s linear;
+    will-change: width;
 }
 
-.wave-animated {
+.loader-progress-glow {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,50 C150,100 350,0 500,50 C650,100 850,0 1000,50 L1000,100 L0,100 Z" fill="rgba(255,255,255,0.2)"/></svg>');
-    background-size: 50% 100%;
-    animation: waveProgress 2s linear infinite;
-}
-
-.glossy-reflection {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg,
-        rgba(255,255,255,0.4) 0%,
-        rgba(255,255,255,0.1) 45%,
-        transparent 50%,
-        rgba(255,255,255,0.05) 100%);
+    top: -4px;
+    right: -2px;
+    width: 60px;
+    height: 10px;
+    background: radial-gradient(ellipse at right center, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
     pointer-events: none;
-    z-index: 5;
+    filter: blur(2px);
 }
 
-@keyframes waveProgress {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+/* --- Layer 8: Fade to Black Exit --- */
+.loader-fade-to-black {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+}
+
+.loader-fade-to-black.active {
+    opacity: 1;
+}
+
+/* --- Loader Exit --- */
+#loader-wrapper.exiting {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Responsive: Loading Screen ── */
+@media (max-width: 1024px) {
+    .loader-content {
+        padding: 5vh 5vw;
+        padding-bottom: 20vh;
+    }
+    .loader-logo-img {
+        width: clamp(220px, 50vw, 400px);
+    }
+    .loader-progress-track {
+        width: 70%;
+    }
 }
 
 @media (max-width: 768px) {
-    .pirate-logo-container { transform: scale(0.7); top: 20px; left: 20px; }
-    .loading-footer { width: 80%; }
+    .loader-content {
+        padding: 4vh 6vw;
+        padding-bottom: 22vh;
+        justify-content: flex-start;
+        padding-top: 12vh;
+    }
+    .loader-logo-img {
+        width: clamp(200px, 65vw, 320px);
+    }
+    .loader-description {
+        max-width: 90vw;
+    }
+    .desc-line {
+        font-size: clamp(0.72rem, 3vw, 0.88rem);
+        line-height: 1.6;
+    }
+    .loader-progress-track {
+        width: 80%;
+    }
+    .loading-journey-text {
+        font-size: clamp(0.85rem, 3.5vw, 1.2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .loader-content {
+        padding: 3vh 5vw;
+        padding-top: 8vh;
+        padding-bottom: 24vh;
+    }
+    .loader-logo-img {
+        width: clamp(180px, 70vw, 280px);
+    }
+    .loader-logo-section {
+        margin-bottom: 1.5rem;
+    }
+    .loader-progress-track {
+        width: 85%;
+    }
 }
 
 /* Navbar */

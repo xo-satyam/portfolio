@@ -2,54 +2,123 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 /**
- * PIRATE LOADING SCREEN LOGIC
+ * CINEMATIC LOADING SCREEN
+ * Orchestrates a premium, film-like loading sequence
  */
-class PirateLoader {
+class CinematicLoader {
     constructor() {
-        this.progressFill = document.getElementById('loading-progress');
-        this.loaderWrapper = document.getElementById('loader-wrapper');
-        this.isLoaded = false;
-        this.simulateProgress();
+        // DOM elements
+        this.wrapper = document.getElementById('loader-wrapper');
+        this.logo = document.getElementById('loader-logo');
+        this.logoSection = this.logo?.closest('.loader-logo-section');
+        this.descLines = document.querySelectorAll('.desc-line');
+        this.journeyText = document.getElementById('loading-journey-text');
+        this.progressTrack = document.getElementById('loader-progress-track');
+        this.progressBar = document.getElementById('loading-progress');
+        this.fadeToBlack = document.getElementById('loader-fade-to-black');
+
+        this.progress = 0;
+        this.isComplete = false;
+
+        // Start the cinematic sequence
+        this.startSequence();
     }
 
-    simulateProgress() {
-        let progress = 0;
-        const duration = 5000; // 5 seconds for a cinematic feel
-        const intervalTime = 20; // 50fps for smooth movement
-        const increment = 100 / (duration / intervalTime);
-
-        const interval = setInterval(() => {
-            progress += increment;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                this.onLoadComplete();
-            }
-            this.updateProgress(progress);
-        }, intervalTime);
-    }
-
-    updateProgress(percent) {
-        if (this.progressFill) {
-            this.progressFill.style.width = percent + '%';
-        }
-    }
-
-    onLoadComplete() {
-        this.isLoaded = true;
+    /**
+     * Master animation timeline
+     * All timings are designed for cinematic pacing
+     */
+    startSequence() {
+        // Phase 1: Background is already visible (video autoplay)
+        // Wait a beat for the atmosphere to set in
+        
+        // Phase 2: Logo fades in with upward motion + blur-to-focus (1.0s)
         setTimeout(() => {
-            if (this.loaderWrapper) {
-                this.loaderWrapper.style.opacity = '0';
-                document.body.classList.remove('loading');
-                setTimeout(() => {
-                    this.loaderWrapper.style.display = 'none';
-                    // Trigger hero scene initialization
-                    initHero();
-                }, 800);
-            }
+            if (this.logoSection) this.logoSection.classList.add('visible');
         }, 1000);
+
+        // Phase 3: Description lines appear one by one (starting 2.2s)
+        this.descLines.forEach((line, index) => {
+            setTimeout(() => {
+                line.classList.add('visible');
+            }, 2200 + (index * 350));
+        });
+
+        // Phase 4: Progress bar appears and begins filling (starting 4.0s)
+        setTimeout(() => {
+            if (this.progressTrack) this.progressTrack.classList.add('visible');
+            this.startProgress();
+        }, 4000);
+    }
+
+    /**
+     * Smooth, cinematic progress animation
+     * Uses variable speed for more organic feel
+     */
+    startProgress() {
+        const totalDuration = 4500; // 4.5s total fill time
+        const startTime = performance.now();
+
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            // Use an ease-in-out curve for cinematic feel
+            let t = Math.min(elapsed / totalDuration, 1);
+            // Cubic ease-in-out
+            t = t < 0.5
+                ? 4 * t * t * t
+                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            
+            this.progress = t * 100;
+
+            if (this.progressBar) {
+                this.progressBar.style.width = this.progress + '%';
+            }
+
+            if (this.progress < 100) {
+                requestAnimationFrame(animate);
+            } else {
+                this.onComplete();
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }
+
+    /**
+     * Exit sequence: fade to black → remove loader → reveal portfolio
+     */
+    onComplete() {
+        if (this.isComplete) return;
+        this.isComplete = true;
+
+        // Brief pause at 100%
+        setTimeout(() => {
+            // Fade to black
+            if (this.fadeToBlack) this.fadeToBlack.classList.add('active');
+
+            // After black screen, start removing loader
+            setTimeout(() => {
+                document.body.classList.remove('loading');
+                
+                // Fade the entire wrapper out
+                if (this.wrapper) {
+                    this.wrapper.classList.add('exiting');
+                }
+
+                // Clean up and init hero
+                setTimeout(() => {
+                    if (this.wrapper) {
+                        this.wrapper.style.display = 'none';
+                    }
+                    initHero();
+                }, 900);
+            }, 700);
+        }, 600);
     }
 }
+
+// Initialize the cinematic loader
+new CinematicLoader();
 
 /**
  * HERO SECTION 3D INTERACTION
@@ -133,9 +202,6 @@ function animateHero() {
         heroRenderer.render(heroScene, heroCamera);
     }
 }
-
-// Start Loader
-new PirateLoader();
 
 // Intersection Observer for animations
 const observer = new IntersectionObserver((entries) => {
