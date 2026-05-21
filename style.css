@@ -2,7 +2,7 @@
     --primary: #f7b7c9;
     --primary-hover: #f29ab7;
     --bg-dark: #0b141a;
-    --bg-card: rgba(14, 20, 26, 0.55);
+    --bg-card: rgba(14, 20, 26, 0.36);
     --text-primary: #f8fafc;
     --text-secondary: #a7b0bb;
     --accent: #22c55e;
@@ -482,38 +482,50 @@ body.loading {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: saturate(1.05) contrast(1.03) brightness(0.98);
+    filter: blur(0.4px);
     transform: none;
     backface-visibility: hidden;
-    transition: filter 1.8s ease;
+    will-change: auto;
+    transition: filter 1.2s ease;
 }
 
 .hero-video-overlay {
     position: absolute;
     inset: 0;
-    background: transparent;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.05) 30%, transparent 100%);
     pointer-events: none;
-    transition: background 1.8s ease, backdrop-filter 1.8s ease;
-    backdrop-filter: blur(0px);
+    transition: opacity 1.2s ease;
+    opacity: 0.6;
 }
 
 .hero-video-overlay::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(11, 20, 26, 0) 0%, rgba(11, 20, 26, 0.15) 55%, rgba(11, 20, 26, 0.65) 100%);
-    transform: translateY(18%);
+    background: linear-gradient(180deg, rgba(11, 20, 26, 0) 0%, rgba(11, 20, 26, 0.2) 55%, rgba(11, 20, 26, 0.6) 100%);
+    transform: translateY(15%);
     opacity: 0;
-    transition: transform 1.8s ease, opacity 1.8s ease;
+    transition: transform 1.2s ease, opacity 1.2s ease;
     will-change: transform, opacity;
 }
 
 .scrolled .hero-video {
-    filter: saturate(0.95) contrast(1.02) brightness(0.82);
+    opacity: 1;
+    filter: blur(1px);
+}
+
+.scrolled .hero-video.is-hidden {
+    opacity: 0;
+}
+
+.scrolled .hero-video.is-active {
+    opacity: 1;
 }
 
 .scrolled .hero-video-overlay {
-    backdrop-filter: blur(3px);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.05) 30%, transparent 100%);
+    opacity: 0.6;
+    transition: opacity 1.2s ease, background 1.2s ease;
 }
 
 .scrolled .hero-video-overlay::after {
@@ -535,12 +547,12 @@ body.loading {
 }
 
 .greeting {
-    color: var(--primary);
+    color: #f7b7c9;
     font-weight: 600;
     font-size: 1.1rem;
     display: block;
     margin-bottom: 1rem;
-    text-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    text-shadow: 0 8px 22px rgba(247, 183, 201, 0.18);
 }
 
 .hero h1 {
@@ -666,6 +678,7 @@ body.loading {
     margin-bottom: 4rem;
     position: relative;
     padding-bottom: 1rem;
+    color: #f7b7c9;
 }
 
 .section-title::after {
@@ -698,6 +711,8 @@ body.loading {
     border-radius: 12px;
     margin-top: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 .education-box h3 {
@@ -705,7 +720,7 @@ body.loading {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: #ffffff;
+    color: #f7b7c9;
 }
 
 .about-highlights {
@@ -721,6 +736,8 @@ body.loading {
     padding: 1.5rem;
     border-radius: 12px;
     transition: var(--transition);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 .highlight-item:hover {
@@ -729,7 +746,7 @@ body.loading {
 
 .highlight-item i {
     font-size: 1.5rem;
-    color: #ffffff;
+    color: #f7b7c9;
 }
 
 .highlight-item h4 {
@@ -751,7 +768,7 @@ body.loading {
     content: '→';
     position: absolute;
     left: 0;
-    color: #ffffff;
+    color: #f7b7c9;
 }
 
 /* Projects Section */
@@ -768,6 +785,8 @@ body.loading {
     transition: var(--transition);
     border: 1px solid rgba(255, 255, 255, 0.05);
     height: 100%;
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 .project-card:hover {
@@ -780,7 +799,7 @@ body.loading {
 }
 
 .project-tag {
-    color: var(--primary);
+    color: #f7b7c9;
     font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -794,7 +813,7 @@ body.loading {
 }
 
 .project-card p {
-    color: var(--text-secondary);
+    color: #ffffff;
     margin-bottom: 1.5rem;
 }
 
@@ -805,7 +824,7 @@ body.loading {
 
 .project-features li {
     margin-bottom: 0.6rem;
-    color: var(--text-secondary);
+    color: #ffffff;
     padding-left: 1.5rem;
     position: relative;
 }
@@ -878,6 +897,8 @@ body.loading {
     background: var(--bg-card);
     padding: 2rem;
     border-radius: 12px;
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 .timeline-content .company {
@@ -888,11 +909,12 @@ body.loading {
 
 .timeline-content ul {
     list-style: none;
-    color: var(--text-secondary);
+    color: #ffffff;
 }
 
 .timeline-content li {
     margin-bottom: 0.6rem;
+    color: #ffffff;
 }
 
 /* Skills Section */
@@ -905,7 +927,7 @@ body.loading {
 .skill-group h3 {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
-    color: #ffffff;
+    color: #f7b7c9;
 }
 
 .skill-list {
@@ -920,6 +942,8 @@ body.loading {
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 .skill-item:hover {
@@ -951,6 +975,8 @@ body.loading {
     align-items: center;
     color: var(--primary);
     font-size: 1.2rem;
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 .contact-socials {
@@ -986,6 +1012,8 @@ input, textarea {
     font-family: inherit;
     transition: var(--transition);
     margin-bottom: 1.5rem;
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 input:focus, textarea:focus {
