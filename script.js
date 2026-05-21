@@ -120,6 +120,27 @@ class CinematicLoader {
 // Initialize the cinematic loader
 new CinematicLoader();
 
+function initHeroVideo() {
+    const heroVideo = document.getElementById('hero-video');
+    if (!heroVideo) return;
+
+    const playbackRate = 0.6;
+    const applyPlaybackRate = () => {
+        heroVideo.defaultPlaybackRate = playbackRate;
+        heroVideo.playbackRate = playbackRate;
+        const playPromise = heroVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+        }
+    };
+
+    heroVideo.addEventListener('loadedmetadata', applyPlaybackRate, { once: true });
+    heroVideo.addEventListener('canplay', applyPlaybackRate, { once: true });
+    applyPlaybackRate();
+}
+
+document.addEventListener('DOMContentLoaded', initHeroVideo);
+
 /**
  * HERO SECTION 3D INTERACTION
  */
@@ -212,6 +233,46 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('section').forEach(section => observer.observe(section));
 
+// 3D-like parallax scroll effect
+const parallaxItems = Array.from(document.querySelectorAll('[data-parallax]'));
+
+function updateParallax() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    parallaxItems.forEach((item) => {
+        if (item.closest('.hero')) return;
+        const depth = Number(item.getAttribute('data-depth')) || 0.1;
+        const translateY = -(scrollY * depth);
+        item.style.transform = `translate3d(0, ${translateY}px, 0)`;
+    });
+}
+
+updateParallax();
+window.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateParallax);
+});
+
+// Magnetic hover effect on hero video
+const heroBackground = document.querySelector('.hero-background');
+if (heroBackground) {
+    const resetMagnet = () => {
+        heroBackground.style.transform = '';
+    };
+
+    heroBackground.addEventListener('mousemove', (event) => {
+        const rect = heroBackground.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const xPercent = (x / rect.width) - 0.5;
+        const yPercent = (y / rect.height) - 0.5;
+        const maxOffset = 12;
+        const translateX = xPercent * maxOffset;
+        const translateY = yPercent * maxOffset;
+        heroBackground.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+    });
+
+    heroBackground.addEventListener('mouseleave', resetMagnet);
+}
+
 // Mobile Nav
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
@@ -220,4 +281,45 @@ if (hamburger) {
         navLinks.classList.toggle('active');
         hamburger.classList.toggle('active');
     });
+}
+
+// Darken and blur hero background after scrolling
+const scrollContainer = document.querySelector('.page-wrapper');
+const scrolledThreshold = 30;
+const applyScrolledState = () => {
+    const scrollTop = scrollContainer ? scrollContainer.scrollTop : (window.scrollY || window.pageYOffset);
+    document.body.classList.toggle('scrolled', scrollTop > scrolledThreshold);
+};
+
+applyScrolledState();
+if (scrollContainer) {
+    scrollContainer.addEventListener('scroll', () => {
+        window.requestAnimationFrame(applyScrolledState);
+    });
+} else {
+    window.addEventListener('scroll', () => {
+        window.requestAnimationFrame(applyScrolledState);
+    });
+}
+
+// Prevent top bounce from pulling fixed elements down
+const pageWrapper = document.querySelector('.page-wrapper');
+if (pageWrapper) {
+    pageWrapper.addEventListener('wheel', (event) => {
+        if (pageWrapper.scrollTop <= 0 && event.deltaY < 0) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+
+    let touchStartY = 0;
+    pageWrapper.addEventListener('touchstart', (event) => {
+        touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+
+    pageWrapper.addEventListener('touchmove', (event) => {
+        const currentY = event.touches[0].clientY;
+        if (pageWrapper.scrollTop <= 0 && currentY > touchStartY) {
+            event.preventDefault();
+        }
+    }, { passive: false });
 }
