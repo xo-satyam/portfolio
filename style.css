@@ -486,7 +486,7 @@ body.loading {
     transform: none;
     backface-visibility: hidden;
     will-change: auto;
-    transition: filter 1.2s ease;
+    transition: filter 3s ease;
 }
 
 .hero-video-overlay {
