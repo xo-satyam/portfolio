@@ -297,9 +297,9 @@ const updateHeroBlurOnScroll = () => {
     const heroVideoEl = document.querySelector('.hero-video');
     if (!heroVideoEl) return;
 
-    const startBlur = 0.6;  // px at top
-    const maxBlur = 18;     // px at max scroll (increased for stronger effect)
-    const maxScroll = 400;  // px where blur reaches max (reach sooner)
+    const startBlur = 0.1;  // px at top
+    const maxBlur = 4;      // px at max scroll
+    const maxScroll = 700;  // px where blur reaches max
     const ratio = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
     const blur = startBlur + ratio * (maxBlur - startBlur);
     heroVideoEl.style.filter = `blur(${blur}px)`;
