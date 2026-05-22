@@ -124,7 +124,7 @@ function initHeroVideo() {
     const heroVideo = document.getElementById('hero-video');
     if (!heroVideo) return;
 
-    const playbackRate = 0.6;
+    const playbackRate = 1.0;
     const applyPlaybackRate = () => {
         heroVideo.defaultPlaybackRate = playbackRate;
         heroVideo.playbackRate = playbackRate;
@@ -291,14 +291,35 @@ const applyScrolledState = () => {
     document.body.classList.toggle('scrolled', scrollTop > scrolledThreshold);
 };
 
+// Increase hero video blur progressively based on scroll depth
+const updateHeroBlurOnScroll = () => {
+    const scrollTop = scrollContainer ? scrollContainer.scrollTop : (window.scrollY || window.pageYOffset);
+    const heroVideoEl = document.querySelector('.hero-video');
+    if (!heroVideoEl) return;
+
+    const startBlur = 0.6;  // px at top
+    const maxBlur = 18;     // px at max scroll (increased for stronger effect)
+    const maxScroll = 400;  // px where blur reaches max (reach sooner)
+    const ratio = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+    const blur = startBlur + ratio * (maxBlur - startBlur);
+    heroVideoEl.style.filter = `blur(${blur}px)`;
+};
+
 applyScrolledState();
+updateHeroBlurOnScroll();
 if (scrollContainer) {
     scrollContainer.addEventListener('scroll', () => {
-        window.requestAnimationFrame(applyScrolledState);
+        window.requestAnimationFrame(() => {
+            applyScrolledState();
+            updateHeroBlurOnScroll();
+        });
     });
 } else {
     window.addEventListener('scroll', () => {
-        window.requestAnimationFrame(applyScrolledState);
+        window.requestAnimationFrame(() => {
+            applyScrolledState();
+            updateHeroBlurOnScroll();
+        });
     });
 }
 
