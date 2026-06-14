@@ -28,14 +28,14 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    overscroll-behavior-y: none;
+    height: 100%;
+    overflow: hidden;
+}
 
 .hamburger {
     display: none;
     cursor: pointer;
-}
-    overscroll-behavior-y: none;
-    height: 100%;
-    overflow: hidden;
 }
 
 .page-wrapper {
@@ -46,12 +46,6 @@ body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: none;
 }
-
-    .navbar .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
 
 
 .container {
@@ -64,10 +58,6 @@ body {
 /* CINEMATIC LOADING SCREEN                                   */
 /* ═══════════════════════════════════════════════════════════ */
 
-
-    .hamburger {
-        display: block;
-    }
 body.loading {
     overflow: hidden;
 }
@@ -248,35 +238,6 @@ body.loading {
     gap: 1.8rem;
 }
 
-/* "LOADING THE JOURNEY" text */
-.loading-journey-text {
-    font-family: 'Permanent Marker', cursive;
-    font-size: clamp(1rem, 2vw, 1.6rem);
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: 0.25em;
-    text-align: center;
-    text-shadow:
-        0 0 20px rgba(255, 255, 255, 0.3),
-        0 0 40px rgba(255, 255, 255, 0.1),
-        0 2px 10px rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    transition: none;
-    animation: none;
-}
-
-.loading-journey-text.visible {
-    opacity: 1;
-    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    animation: textFlicker 4s ease-in-out infinite;
-}
-
-@keyframes textFlicker {
-    0%, 100% { opacity: 0.85; text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1); }
-    25%      { opacity: 1;    text-shadow: 0 0 25px rgba(255,255,255,0.45), 0 0 50px rgba(255,255,255,0.15); }
-    50%      { opacity: 0.75; text-shadow: 0 0 15px rgba(255,255,255,0.2), 0 0 30px rgba(255,255,255,0.08); }
-    75%      { opacity: 0.95; text-shadow: 0 0 22px rgba(255,255,255,0.35), 0 0 45px rgba(255,255,255,0.12); }
-}
-
 /* Progress Bar */
 .loader-progress-track {
     width: 55%;
@@ -370,9 +331,6 @@ body.loading {
     }
     .loader-progress-track {
         width: 80%;
-    }
-    .loading-journey-text {
-        font-size: clamp(0.85rem, 3.5vw, 1.2rem);
     }
 }
 
@@ -474,7 +432,6 @@ body.loading {
     will-change: transform;
     transition: transform 0.4s ease;
     transform-style: preserve-3d;
-    pointer-events: none;
 }
 
 .hero-video {
@@ -1077,6 +1034,10 @@ input:focus, textarea:focus {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+    }
+
+    .hamburger {
+        display: block;
     }
 
     .form-row {

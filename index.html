@@ -330,13 +330,13 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="portfolioContactForm">
+                        <form id="portfolioContactForm" action="mailto:satyam04sharma30@gmail.com" method="post" enctype="text/plain">
                             <div class="form-row">
-                                <input type="text" placeholder="Name" required>
-                                <input type="email" placeholder="Email" required>
+                                <input type="text" name="name" placeholder="Name" required>
+                                <input type="email" name="email" placeholder="Email" required>
                             </div>
-                            <input type="text" placeholder="Subject" required>
-                            <textarea placeholder="Message" rows="5" required></textarea>
+                            <input type="text" name="subject" placeholder="Subject" required>
+                            <textarea name="message" placeholder="Message" rows="5" required></textarea>
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>
                     </div>

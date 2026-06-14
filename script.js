@@ -12,7 +12,7 @@ class CinematicLoader {
         this.logo = document.getElementById('loader-logo');
         this.logoSection = this.logo?.closest('.loader-logo-section');
         this.descLines = document.querySelectorAll('.desc-line');
-        this.journeyText = document.getElementById('loading-journey-text');
+
         this.progressTrack = document.getElementById('loader-progress-track');
         this.progressBar = document.getElementById('loading-progress');
         this.fadeToBlack = document.getElementById('loader-fade-to-black');
@@ -175,6 +175,7 @@ function initHero() {
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
 
+        if (!size.y) size.y = 1;
         const scale = 12 / size.y;
         heroModel.scale.set(scale, scale, scale);
 
@@ -343,4 +344,21 @@ if (pageWrapper) {
             event.preventDefault();
         }
     }, { passive: false });
+}
+
+// Contact form handler
+const contactForm = document.getElementById('portfolioContactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Message Sent!';
+        btn.disabled = true;
+        contactForm.reset();
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 4000);
+    });
 }
